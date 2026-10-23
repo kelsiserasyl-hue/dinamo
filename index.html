@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="kk">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Күштің өлшем бірлігі – ньютон. Динамометр</title>
+<style>
+:root{--bg:#f3f8ff;--card:#fff;--tx:#14213d;--mut:#5b6b8a;--pr:#2563eb;--ac:#f97316;--ok:#16a34a;--bad:#dc2626;--bd:#d6e2fb;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#0d1526;--card:#16213b;--tx:#e8eefc;--mut:#9fb0d3;--pr:#60a5fa;--ac:#fb923c;--ok:#4ade80;--bad:#f87171;--bd:#2a3b63}}
+:root[data-theme="dark"]{--bg:#0d1526;--card:#16213b;--tx:#e8eefc;--mut:#9fb0d3;--pr:#60a5fa;--ac:#fb923c;--ok:#4ade80;--bad:#f87171;--bd:#2a3b63}
+*{box-sizing:border-box}html{scroll-padding-top:env(safe-area-inset-top,0px)}
+body{margin:0;background:var(--bg);color:var(--tx);font-family:system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;line-height:1.5}
+header{background:linear-gradient(135deg,#7c3aed,#2563eb);color:#fff;padding:22px 16px;text-align:center}
+header h1{margin:0 0 6px;font-size:clamp(1.2rem,4vw,1.8rem)}header p{margin:0;opacity:.9}
+main{max-width:1000px;margin:0 auto;padding:12px}
+section{background:var(--card);border:1px solid var(--bd);border-radius:16px;padding:16px;margin:14px 0}
+h2{margin:0 0 10px;font-size:1.25rem;color:var(--pr)}h3{margin:14px 0 6px}
+canvas{width:100%;height:auto;border-radius:12px;border:1px solid var(--bd);display:block;background:#eef5ff}
+.lab{display:grid;grid-template-columns:minmax(0,1fr);gap:12px}
+@media(min-width:760px){.lab{grid-template-columns:minmax(0,340px) minmax(0,1fr)}}
+.row{display:flex;flex-wrap:wrap;gap:8px;margin:10px 0;align-items:center}
+button,select{font:inherit;border-radius:10px;border:1px solid var(--bd);padding:9px 13px;background:var(--card);color:var(--tx);cursor:pointer}
+button.p{background:var(--pr);color:#fff;border-color:var(--pr)}button.a{background:var(--ac);color:#fff;border-color:var(--ac)}button.g{background:var(--ok);color:#fff;border-color:var(--ok)}
+button.sel{outline:3px solid var(--ac)}button:active{transform:scale(.97)}
+.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(120px,1fr));gap:8px;margin:8px 0}
+.stats div{background:var(--bg);border-radius:10px;padding:8px;text-align:center;font-size:.85rem;color:var(--mut)}.stats b{display:block;font-size:1.2rem;color:var(--tx)}
+.q{border:1px solid var(--bd);border-radius:12px;padding:10px;margin:10px 0}
+.q label{display:block;padding:5px 8px;border-radius:8px;cursor:pointer}
+.fb{margin-top:6px;font-size:.92rem}.ok{color:var(--ok)}.bad{color:var(--bad)}
+.score{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;background:var(--ac);color:#fff;text-align:center;padding:6px;font-weight:700}
+details{border:1px solid var(--bd);border-radius:10px;padding:8px 12px;margin:8px 0}summary{cursor:pointer;font-weight:600}
+textarea{width:100%;min-height:80px;font:inherit;border-radius:10px;border:1px solid var(--bd);padding:8px;background:var(--bg);color:var(--tx)}
+.tw{overflow-x:auto}table{border-collapse:collapse;width:100%;font-size:.88rem}th,td{border:1px solid var(--bd);padding:5px 8px;text-align:center;white-space:nowrap}th{background:var(--bg)}
+.chk li{margin:4px 0;color:var(--mut)}.chk li.on{color:var(--ok);font-weight:600}
+.note{background:var(--bg);border-left:4px solid var(--ac);padding:8px 12px;border-radius:8px;font-size:.92rem}
+</style>
+</head>
+<body>
+<header><h1>⚖️ Күштің өлшем бірлігі – ньютон. Динамометр</h1><p>Виртуалды физика зертханасы · 3-топ</p></header>
+<div class="score">Ұпай: <span id="sc">0</span> / 10</div>
+<main>
+
+<section>
+<h2>1. Теориялық бөлім</h2>
+<p>Халықаралық бірліктер жүйесінде (SI) күштің өлшем бірлігі – <b>ньютон</b> (Н). Бұл бірлік ұлы ағылшын ғалымы <b>Исаак Ньютонның</b> (1643–1727) құрметіне аталған. Ол механика заңдарын және бүкіләлемдік тартылыс заңын ашты.</p>
+<p><b>1 Н</b> шамамен массасы 100 г жүкке Жер тарапынан әсер ететін тартылыс күшіне тең (бұл зертханада ауырлық үдеуі g ≈ 10 Н/кг деп алынады).</p>
+<p><b>Динамометр</b> – күшті өлшейтін құрал. Негізгі бөліктері:</p>
+<ul><li><b>Корпус</b> – серіппені қорғайды.</li><li><b>Серіппе</b> – күш түскенде созылады.</li><li><b>Көрсеткіш</b> – серіппемен бірге жылжиды.</li><li><b>Шкала</b> – бөліктері күш мәнін ньютонмен көрсетеді.</li><li><b>Ілгек</b> – жүк ілінетін бөлік.</li></ul>
+<p>Динамометр <b>серпімді деформацияға</b> негізделіп жұмыс істейді: күш артқан сайын серіппе көбірек созылады, күш жойылғанда серіппе бастапқы қалпына оралады. Шкаладағы әр бөлік белгілі бір күшке сәйкес келеді.</p>
+</section>
+
+<section>
+<h2>2. Интерактивті динамометр</h2>
+<div class="lab"><canvas id="cv" width="340" height="560"></canvas>
+<div>
+<div class="stats"><div>Ілінген жүк<b id="sL">жоқ</b></div><div>Көрсеткіш<b id="sR">0.00 Н</b></div><div>Серіппенің созылуы<b id="sD">0.0 см</b></div></div>
+<p><b>Жүкті таңда (ілгекке ілінеді):</b></p>
+<div class="row" id="lb"></div>
+<div class="row"><button class="g" id="bM">📏 Өлшеу</button><button class="a" id="bR">✋ Жүкті алып тастау</button><button id="bX">↺ Қайта бастау</button></div>
+<div class="note" id="mf">Жүк таңда, көрсеткіш тыныштыққа келгенше күт, содан кейін «Өлшеу» түймесін бас.</div>
+<div class="row"><button class="p" id="bT">➕ Кестеге енгізу</button></div>
+<div class="note">Шарт: серіппенің қатаңдығы бірдей, 1 Н күш серіппені 1 см созады. Шкаланың бір бөлігі – 0,5 Н.</div>
+</div></div>
+<h3>Өлшеу кестесі</h3>
+<div class="tw"><table><thead><tr><th>№</th><th>Жүк, Н</th><th>Көрсеткіш F, Н</th><th>Созылу Δl, см</th><th>F / Δl, Н/см</th></tr></thead><tbody id="tb"><tr><td colspan="5">Кесте бос.</td></tr></tbody></table></div>
+</section>
+
+<section>
+<h2>3. Зерттеу тапсырмалары</h2>
+<ul class="chk" id="tasks">
+<li id="t1">Әртүрлі күш мәндерінде серіппенің созылуын бақыла (кемінде 2 түрлі жүкті іл).</li>
+<li id="t2">Динамометр көрсеткішін оқуды үйрен («Динамометрді оқы» тапсырмасында дұрыс жауап бер).</li>
+<li id="t3">Күштің өлшем бірлігін анықта («Өлшем бірлігін тап» тапсырмасы).</li>
+<li id="t4">Күш пен созылу арасындағы байланысты зертте (кестеге 3 түрлі нөлден өзге жүкті енгіз).</li>
+<li id="t5">Өлшеу нәтижелерін кестеге жаз (кемінде 4 өлшеу).</li>
+</ul>
+</section>
+
+<section>
+<h2>4. Интерактивті тапсырмалар</h2>
+<h3>А) Динамометрді оқы (3 раунд)</h3>
+<canvas id="dc" width="500" height="120" style="max-width:520px"></canvas>
+<div class="row" id="ro"></div><div class="fb" id="rfb"></div><button id="rN">Келесі тапсырма</button>
+<h3>Ә) Өлшем бірлігін тап</h3>
+<div class="q"><b>Күшті қандай бірлікпен өлшейді?</b>
+<label><input type="radio" name="u" onchange="uA(0)"> Ньютон (Н)</label><label><input type="radio" name="u" onchange="uA(1)"> Килограмм (кг)</label><label><input type="radio" name="u" onchange="uA(2)"> Метр (м)</label><div class="fb" id="ufb"></div></div>
+<h3>Б) Сәйкестендір: шама – белгіленуі – өлшем бірлігі</h3>
+<div class="tw"><table><thead><tr><th>Шама</th><th>Белгіленуі</th><th>Өлшем бірлігі</th></tr></thead><tbody id="mt"></tbody></table></div>
+<div class="row"><button class="p" id="bMt">Тексеру</button></div><div class="fb" id="mfb"></div>
+<h3>В) Тест (5 сұрақ)</h3><div id="quiz"></div>
+<p class="note">Қате жауап берілгенде дұрыс жауап пен оның түсіндірмесі көрсетіледі, әр дұрыс жауапқа 1 ұпай қосылады.</p>
+</section>
+
+<section>
+<h2>5. Қорғауға арналған бөлім</h2>
+<details><summary>Күштің SI жүйесіндегі өлшем бірлігі қандай?</summary><p>Күштің SI жүйесіндегі өлшем бірлігі – ньютон (Н).</p></details>
+<details><summary>Ньютон дегеніміз не?</summary><p>Ньютон – күштің өлшем бірлігі. 1 Н шамамен массасы 100 г жүкке әсер ететін тартылыс күшіне тең. Бірлік Исаак Ньютонның құрметіне аталған.</p></details>
+<details><summary>Динамометр қандай құрал?</summary><p>Динамометр – күшті өлшейтін құрал. Оның серіппесі, шкаласы, көрсеткіші және ілгегі бар.</p></details>
+<details><summary>Динамометрдің жұмыс істеу принципі қандай?</summary><p>Динамометр серпімді деформацияға негізделген. Күш түскенде серіппе созылады, күш неғұрлым үлкен болса, созылу соғұрлым көп болады. Күш жойылғанда серіппе бастапқы қалпына келеді.</p></details>
+<details><summary>Динамометрмен күшті қалай өлшейді?</summary><p>Жүкті ілгекке іліп, көрсеткіш тыныштыққа келгенше күтеміз. Содан кейін көрсеткіштің шкаладағы орнына тік қарап, күш мәнін оқимыз.</p></details>
+<details><summary>Өлшеу нәтижесі қандай бірлікпен жазылады?</summary><p>Өлшеу нәтижесі санмен және бірлікпен жазылады, мысалы F = 3 Н.</p></details>
+</section>
+
+<section>
+<h2>6. Зерттеу нәтижесі</h2>
+<div class="q" id="auto"></div>
+<p><b>Менің зерттеу қорытындым:</b></p>
+<textarea id="myc" placeholder="Өлшеу нәтижелері бойынша қорытындыңды жаз..."></textarea>
+<div class="row"><button class="p" id="bRes">Қорытындыны жаңарту</button></div>
+<div class="q"><b>Топтың қорғауына арналған қорытынды үлгісі:</b><br>Біз динамометрмен әртүрлі жүктердің күшін өлштік. Күштің SI жүйесіндегі өлшем бірлігі – ньютон. Жүктің күші артқанда динамометр серіппесінің созылуы да артты. Бұл динамометрдің серпімді деформацияға негізделіп жұмыс істейтінін дәлелдейді. Өлшеу нәтижесін санмен және бірлікпен (Н) жазу керек.</div>
+</section>
+</main>
+<script>
+const $=id=>document.getElementById(id);
+const cv=$('cv'),c=cv.getContext('2d');
+const PX=24,TOP=70;
+let sc=0,done={},load=null,ext=0,vel=0,meas=null,rows=[];
+function pt(k){if(!done[k]){done[k]=1;sc++;$('sc').textContent=sc}}
+const loads=[0,1,2,3,4,5];
+$('lb').innerHTML=loads.map(n=>`<button id="ld${n}" onclick="hang(${n})">${n} Н</button>`).join('');
+window.hang=n=>{load=n;meas=null;loads.forEach(k=>$('ld'+k).className=k===n?'sel':'');$('sL').textContent=n+' Н';
+$('mf').textContent='Жүк ілінді. Көрсеткіш тыныштыққа келгенше күт, содан кейін «Өлшеу» түймесін бас.';usedL[n]=1;if(Object.keys(usedL).length>=2)tk('t1')};
+const usedL={};
+$('bR').onclick=()=>{load=null;meas=null;loads.forEach(k=>$('ld'+k).className='');$('sL').textContent='жоқ';$('mf').textContent='Жүк алынды, көрсеткіш бастапқы орнына қайтады.'};
+$('bX').onclick=()=>{load=null;meas=null;rows=[];ext=0;vel=0;loads.forEach(k=>$('ld'+k).className='');$('sL').textContent='жоқ';for(const k in usedL)delete usedL[k];$('mf').textContent='Зертхана қайта басталды. Кесте тазаланды.';tbl();res()};
+$('bM').onclick=()=>{if(load===null){$('mf').innerHTML='<span class="bad">Алдымен жүк таңда.</span>';return}
+if(Math.abs(ext-load*PX)>1||Math.abs(vel)>3){$('mf').innerHTML='<span class="bad">Көрсеткіш әлі тербеліп тұр. Тыныштыққа келгенше күт.</span>';return}
+meas={F:load,d:load};$('mf').innerHTML='<span class="ok">Өлшенді: F = '+load+' Н, серіппенің созылуы Δl = '+load.toFixed(1)+' см. Нәтижені кестеге енгізуге болады.</span>'};
+$('bT').onclick=()=>{if(!meas){$('mf').innerHTML='<span class="bad">Алдымен «Өлшеу» түймесін бас.</span>';return}
+rows.push({L:load,F:meas.F,d:meas.d});meas=null;tbl();res();
+const nz=new Set(rows.filter(r=>r.F>0).map(r=>r.F));if(nz.size>=3)tk('t4');if(rows.length>=4)tk('t5');$('mf').textContent='Нәтиже кестеге енгізілді.'};
+function tbl(){$('tb').innerHTML=rows.length?rows.map((r,i)=>`<tr><td>${i+1}</td><td>${r.L}</td><td>${r.F.toFixed(1)}</td><td>${r.d.toFixed(1)}</td><td>${r.d>0?(r.F/r.d).toFixed(2):'–'}</td></tr>`).join(''):'<tr><td colspan="5">Кесте бос.</td></tr>'}
+function tk(k){const e=$(k);if(e&&!e.classList.contains('on')){e.classList.add('on');e.textContent='✔ '+e.textContent}}
+let last=performance.now();
+function step(now){const dt=Math.min(.03,(now-last)/1000);last=now;
+const tg=(load||0)*PX;const a=140*(tg-ext)-9*vel;vel+=a*dt;ext+=vel*dt;if(ext<0){ext=0;vel=Math.abs(vel)*.3}
+$('sR').textContent=(ext/PX).toFixed(2)+' Н';$('sD').textContent=(ext/PX).toFixed(1)+' см';draw();requestAnimationFrame(step)}
+function draw(){const W=340,H=560;c.clearRect(0,0,W,H);
+c.fillStyle='#94a3b8';c.fillRect(100,0,140,14);c.fillStyle='#64748b';c.fillRect(160,14,20,22);
+const cx=120,cw=100,cy0=36,cy1=290;
+c.fillStyle='#f8fafc';c.strokeStyle='#334155';c.lineWidth=3;c.beginPath();c.roundRect(cx,cy0,cw,cy1-cy0,10);c.fill();c.stroke();
+c.fillStyle='#e2e8f0';c.fillRect(cx+60,TOP-14,28,150+14+14);
+c.strokeStyle='#334155';c.fillStyle='#14213d';c.lineWidth=1.5;c.font='12px sans-serif';c.textAlign='left';
+for(let i=0;i<=10;i++){const y=TOP+i*PX*.5,l=i%2===0?18:10;c.beginPath();c.moveTo(cx+60,y);c.lineTo(cx+60+l,y);c.stroke();if(i%2===0)c.fillText(i/2+' Н',cx+60+20,y+4)}
+const py=TOP+ext;
+c.strokeStyle='#64748b';c.lineWidth=3;c.beginPath();c.moveTo(170,cy0);
+const n=14,y0=cy0+4,y1=py;for(let i=1;i<=n;i++){const y=y0+(y1-y0)*i/n,x=170+(i%2?-14:14);c.lineTo(x,y)}c.lineTo(170,py);c.stroke();
+c.strokeStyle='#475569';c.lineWidth=4;const hy=cy1+ext+10;c.beginPath();c.moveTo(170,py);c.lineTo(170,hy);c.stroke();
+c.fillStyle='#dc2626';c.beginPath();c.moveTo(cx+56,py);c.lineTo(cx+80,py-6);c.lineTo(cx+80,py+6);c.fill();c.fillRect(cx+4,py-1.5,54,3);
+c.strokeStyle='#475569';c.lineWidth=4;c.beginPath();c.arc(170,hy+12,12,-1.5,3.1+.4,false);c.stroke();
+if(load){const wy=hy+30,wh=30+load*8;c.strokeStyle='#475569';c.lineWidth=2;c.beginPath();c.moveTo(170,hy+24);c.lineTo(170,wy);c.stroke();
+c.fillStyle='#7c3aed';c.fillRect(140,wy,60,wh);c.fillStyle='#fff';c.font='bold 14px sans-serif';c.textAlign='center';c.fillText(load+' Н',170,wy+wh/2+5)}
+c.fillStyle='#14213d';c.font='12px sans-serif';c.textAlign='left';c.fillText('серіппе',10,150);c.fillText('шкала',250,TOP+60);c.fillText('көрсеткіш',10,TOP+4);c.fillText('ілгек',250,hy+16);c.fillText('корпус',10,60);
+c.strokeStyle='#14213d';c.lineWidth=1;[[60,148,150,150],[246,TOP+56,240,TOP+50],[65,TOP,cx+54,py],[246,hy+12,184,hy+12],[55,57,cx,60]].forEach(a=>{c.beginPath();c.moveTo(a[0],a[1]);c.lineTo(a[2],a[3]);c.stroke()})}
+requestAnimationFrame(step);
+// reading task
+const dc=$('dc').getContext('2d');let rv=0,rn=0,rdone=false;
+function rNew(){rv=(1+Math.floor(Math.random()*9))/2;rdone=false;const x=dc;x.clearRect(0,0,500,120);x.fillStyle='#e0f2fe';x.fillRect(0,0,500,120);x.fillStyle='#f8fafc';x.fillRect(20,20,460,50);x.strokeStyle='#334155';x.lineWidth=1.5;x.fillStyle='#14213d';x.font='12px sans-serif';x.textAlign='center';
+for(let i=0;i<=10;i++){const px=30+i*44,l=i%2===0?16:9;x.beginPath();x.moveTo(px,70);x.lineTo(px,70-l);x.stroke();if(i%2===0)x.fillText(i/2+' Н',px,100)}
+const px=30+rv*88;x.fillStyle='#dc2626';x.beginPath();x.moveTo(px,70);x.lineTo(px-7,24);x.lineTo(px+7,24);x.fill();
+let o=[rv];[rv-.5,rv+.5].forEach(v=>{if(v>=0&&v<=5)o.push(v)});while(o.length<3)o.push(rv+1<=5?rv+1:rv-1);o=o.sort(()=>Math.random()-.5);
+$('ro').innerHTML=o.map(v=>`<button onclick="rA(${v})">${v.toString().replace('.',',')} Н</button>`).join('');$('rfb').textContent='Көрсеткіш қанша ньютонды көрсетіп тұр?'}
+window.rA=v=>{if(rdone){$('rfb').textContent='Келесі тапсырма түймесін бас.';return}rdone=true;
+if(v===rv){rn++;if(rn<=3)pt('r'+rn);if(rn>=1)tk('t2');$('rfb').innerHTML='<span class="ok">Дұрыс! Шкаланың бір бөлігі 0,5 Н, көрсеткіш '+String(rv).replace('.',',')+' Н-ды көрсетті.</span>'}
+else $('rfb').innerHTML='<span class="bad">Қате. Дұрыс жауап: '+String(rv).replace('.',',')+' Н. Үлкен бөліктер – бүтін ньютондар, олардың арасында 0,5 Н бөлігі бар.</span>'};
+$('rN').onclick=rNew;rNew();
+window.uA=i=>{if(i===0){pt('u');tk('t3');$('ufb').innerHTML='<span class="ok">Дұрыс! Күш ньютонмен (Н) өлшенеді.</span>'}else $('ufb').innerHTML='<span class="bad">Қате. Дұрыс жауап: ньютон (Н). Килограмм – массаның, метр – ұзындықтың бірлігі.</span>'};
+const mrow=[['Күш','F','Н'],['Масса','m','кг'],['Ұзындық','l','м']];
+const sy=['…','F','m','l'],un=['…','Н','кг','м'];
+$('mt').innerHTML=mrow.map((r,i)=>`<tr><td>${r[0]}</td><td><select id="ms${i}">${sy.map(s=>`<option>${s}</option>`).join('')}</select></td><td><select id="mu${i}">${un.map(s=>`<option>${s}</option>`).join('')}</select></td></tr>`).join('');
+$('bMt').onclick=()=>{const ok=mrow.every((r,i)=>$('ms'+i).value===r[1]&&$('mu'+i).value===r[2]);if(ok){pt('m');$('mfb').innerHTML='<span class="ok">Дұрыс! Күш – F – Н; масса – m – кг; ұзындық – l – м.</span>'}else $('mfb').innerHTML='<span class="bad">Қате. Дұрыс жауап: күш – F – Н; масса – m – кг; ұзындық – l – м.</span>'};
+const qz=[['Динамометр қандай құрал?',['Күшті өлшейтін құрал','Массаны өлшейтін құрал','Уақытты өлшейтін құрал'],0,'Динамометр – күшті өлшейтін құрал.'],
+['Динамометрдің жұмысы қандай құбылысқа негізделген?',['Серпімді деформацияға','Жарықтың шағылуына','Булан–ға'],0,'Күш түскенде серіппе серпімді созылады, сондықтан динамометр серпімді деформацияға негізделген.'],
+['Күштің SI жүйесіндегі өлшем бірлігі қандай?',['Килограмм','Ньютон','Секунд'],1,'Күш ньютонмен (Н) өлшенеді.'],
+['Жүктің күші артса, динамометр серіппесі қалай өзгереді?',['Көбірек созылады','Қысқарады','Өзгермейді'],0,'Күш артқан сайын серіппе көбірек созылады.'],
+['Динамометрдің көрсеткішін оқығанда не істеу керек?',['Көрсеткіш қозғалып тұрғанда оқу','Көрсеткіш тыныштыққа келгенше күту','Шкаланы қарамау'],1,'Көрсеткіш тыныштыққа келгенде ғана нақты күш мәнін оқуға болады.']];
+qz[1][1][2]='Булануға';
+$('quiz').innerHTML=qz.map((s,i)=>`<div class="q"><b>${i+1}. ${s[0]}</b>${s[1].map((t,j)=>`<label><input type="radio" name="z${i}" onchange="za(${i},${j})"> ${t}</label>`).join('')}<div class="fb" id="zf${i}"></div></div>`).join('');
+window.za=(i,j)=>{const s=qz[i],r=$('zf'+i);if(j===s[2]){pt('z'+i);r.innerHTML='<span class="ok">Дұрыс! +1 ұпай. </span>'+s[3]}else r.innerHTML='<span class="bad">Қате. Дұрыс жауап: '+s[1][s[2]]+'. </span>'+s[3]};
+function res(){let h='';
+if(!rows.length)h='<p>Кесте әлі бос. Жүктерді өлшеп, нәтижелерді кестеге енгізіңдер.</p>';
+else{const nz=rows.filter(r=>r.F>0);const u=new Set(nz.map(r=>r.F));
+h='<p>Өлшеу саны: <b>'+rows.length+'</b>.</p>';
+if(u.size>=3){const k=nz.map(r=>r.F/r.d);const same=Math.max(...k)-Math.min(...k)<.05;
+h+='<p>Күш мәні 1 Н-нан 5 Н-ға дейін артқанда серіппенің созылуы да артты. '+(same?'F/Δl қатынасы барлық өлшеуде бірдей (≈ '+k[0].toFixed(2)+' Н/см), демек, созылу күшке тура пропорционал.':'')+'</p><p><b>Қорытынды:</b> динамометр серпімді деформацияға негізделген, күш ньютонмен өлшенеді.</p>'}
+else h+='<p>Қорытынды жасау үшін кемінде 3 түрлі нөлден өзге жүкті өлшеп, кестеге енгізу керек.</p>'}
+const m=$('myc').value.trim();if(m)h+='<p><b>Менің қорытындым:</b> '+m.replace(/[<>&]/g,'')+'</p>';
+$('auto').innerHTML=h+'<p><b>Ұпайым: '+sc+' / 10</b></p>'}
+$('bRes').onclick=res;res();
+</script>
+</body>
+</html>
